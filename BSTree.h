@@ -31,7 +31,7 @@ class BSTree{
 		}
 
 	private:
-		BSTree<T>* search(BSNode<T>* n, T e){
+		BSNode<T>* search(BSNode<T>* n, T e) const{
 			if (n == nullptr){
 				throw std::runtime_error("No se ha encontrado el elemento");
 			}
@@ -53,11 +53,11 @@ class BSTree{
 
 	private:
 		BSNode<T>* insert(BSNode<T>* n, T e){
-			if (e == n->elem){
-				throw std::runtime_error("El elemento ya se encuentra en el árbol.");
-			}
 			if (n == nullptr){
 				return new BSNode(e);
+			}
+			if (e == n->elem){
+				throw std::runtime_error("El elemento ya se encuentra en el árbol.");
 			}
 			if (e < n->elem){
 				n->left = insert(n->left, e);
@@ -70,14 +70,16 @@ class BSTree{
 	public:
 		//Recorrido e impresión del árbol
 		friend std::ostream& operator<<(std::ostream& out, const BSTree<T>& bst){
-			return print_inorder(out, bst.root);
+			out<<"El arbol contiene: ";
+			bst.print_inorder(out, bst.root);
+			return out;
 		}
 
 	private:
-		void print_inorder(std::ostream& out, BSNode<T> n) const{
+		void print_inorder(std::ostream& out, BSNode<T>* n) const{
 			if (n != nullptr){
 				print_inorder(out, n->left);
-				out<<n<<", ";
+				out<<n->elem<<", ";
 
 				if (n->right != nullptr){
 					print_inorder(out, n->right);
@@ -145,7 +147,7 @@ class BSTree{
 				if (n->right != nullptr){
 					delete_cascade(n->right);
 				}
-				delete* n;
+				delete n;
 			}
 		}
 };
