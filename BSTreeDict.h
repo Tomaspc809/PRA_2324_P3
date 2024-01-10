@@ -28,7 +28,7 @@ class BSTreeDict: public Dict<V> {
 		return ret;
 	}
 	int entries() override{
-		return tree.nelem;
+		return tree->size();
 	}
 	//Métodos propios
 	BSTreeDict(){
@@ -38,7 +38,7 @@ class BSTreeDict: public Dict<V> {
 		delete tree;
 	}
 	friend std::ostream& operator<<(std::ostream &out, const BSTreeDict<V> &bst){
-		out<<bst.tree<<std::endl;
+		out<<*(bst.tree)<<std::endl;
 
 		return out;
 	}
