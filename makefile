@@ -10,5 +10,9 @@ bin/testHashTable: testHashTable.cpp Dict.h HashTable.h TableEntry.h
 	mkdir -p bin
 	g++ -o bin/testHashTable testHashTable.cpp
 
+bin/testBSTreeDict: testBSTreeDict.cpp Dict.h BSTreeDict.h BSNode.h TableEntry.h
+	mkdir -p bin
+	g++ -o bin/testBSTreeDict testBSTreeDict.cpp
+
 clean:
 	rm -rf *.o *.gch bin
