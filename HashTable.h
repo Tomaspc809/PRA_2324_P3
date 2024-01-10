@@ -56,6 +56,8 @@ class HashTable: public Dict<V>{
 					return aux.value;
 				}
 			}
+
+			throw std::runtime_error("No se encontró la clave.");
 		}
 		int entries() override{
 			return n;
